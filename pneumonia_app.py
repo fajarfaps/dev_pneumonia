@@ -100,34 +100,37 @@ def home_page():
 
 # Halaman Prediksi
 def prediction_page():
-    st.title("Halaman Prediksi Pneumonia")
-    st.markdown("""    
-    Unggah gambar X-ray paru-paru Anda untuk mendeteksi kemungkinan pneumonia.
-
-    *Catatan:* Aplikasi ini bukan pengganti diagnosis medis, jangan jadikan hasil prediksi ini menjadi keputusan yang absolute.
-    """)
+    st.markdown("<h1 class='black-text'>🔍 Prediksi Gambar Acne</h1>", unsafe_allow_html=True)
     
-    st.markdown("---")
-    st.subheader("📋 Langkah-langkah:")
-    st.write("""    
-    1. Klik tombol *'Browse Files'* di bawah ini untuk mengunggah gambar X-ray paru-paru Anda.
-    2. Tunggu beberapa saat hingga aplikasi selesai memproses.
-    3. Lihat hasil prediksi di bawah beserta tingkat kepercayaan model.
-    """)
+    st.markdown("<h2 class='black-text'>🧠 Deskripsi Model</h2>", unsafe_allow_html=True)
+    st.markdown("""
+        <p class='black-text'>
+        Prediksi dilakukan menggunakan model deep learning yang telah dilatih menggunakan data gambar wajah 
+        dengan dan tanpa acne. Model ini dapat memprediksi dengan tingkat akurasi yang tinggi berdasarkan fitur-fitur 
+        yang dipelajari selama pelatihan.
+        </p>
+    """, unsafe_allow_html=True)
     
-    st.subheader("📤 Unggah Gambar X-ray")
-    uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
+    st.markdown("<h2 class='black-text'>🖼️ Input</h2>", unsafe_allow_html=True)
+    uploaded_file = st.file_uploader("Unggah gambar acne", type=["jpg", "jpeg", "png"])
     
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Gambar yang Diupload", use_column_width=True)
+        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
+        
+        predicted_class, confidence = predict(image, model)
+        
+        class_description = {
+            0: "Jerawat Level 1: Jerawat kecil yang terlihat di beberapa area kulit. Biasanya tidak meradang.",
+            1: "Jerawat Level 2: Jerawat yang lebih besar dan lebih banyak, mungkin sedikit meradang.",
+            2: "Jerawat Level 3: Jerawat yang parah dengan peradangan yang signifikan, memerlukan perawatan medis.",
+            3: "Tidak Berjerawat: Kulit wajah yang bersih tanpa adanya jerawat atau komedo."
+        }
+        
+        st.markdown(f"<p class='black-text'><strong>Prediksi Kelas:</strong> {class_names[predicted_class]}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p class='black-text'><strong>Akurasi:</strong> {confidence:.2f}%</p>", unsafe_allow_html=True)
+        st.markdown(f"<p class='black-text'><strong>Deskripsi:</strong> {class_description[predicted_class]}</p>", unsafe_allow_html=True)
 
-        # Lakukan prediksi
-        model = load_model_from_file()
-        if model:
-            predicted_class, confidence = predict(image, model)
-            st.write(f"Hasil Prediksi: {class_names[predicted_class].strip()}")
-            st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
 
 # Halaman Tentang
 def about_page():
