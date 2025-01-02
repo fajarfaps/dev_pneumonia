@@ -5,11 +5,21 @@ import numpy as np
 
 # Tentukan path model yang sudah dilatih
 model_path = 'keras_model_pneumonia.h5'  # Ganti dengan path model yang sesuai
-model = load_model(model_path)
+
+# Fungsi untuk memuat model
+def load_model_from_file():
+    try:
+        model = load_model(model_path)
+        st.success('Model berhasil dimuat!')
+        return model
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat memuat model: {e}")
+        return None
 
 # Tentukan ukuran gambar dan nama kelas
 IMAGE_WIDTH, IMAGE_HEIGHT = 224, 224
 class_names = open("labels_pneumonia.txt", "r").readlines()
+
 # Fungsi untuk memprediksi gambar
 def predict(image, model):
     # Resize gambar ke ukuran yang diharapkan oleh model
