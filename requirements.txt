@@ -1,7 +1,5 @@
-streamlit
-pandas
-numpy
-scikit-learn
-matplotlib
-tensorflow==2.12
-keras==2.12
+streamlit==1.37.0
+opencv-python
+numpy<2
+tensorflow==2.14.1
+Pillow
