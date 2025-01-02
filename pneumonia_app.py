@@ -48,11 +48,12 @@ def login_page():
     st.title("Login untuk Mengakses Aplikasi")
     username = st.text_input("Username", "")
     password = st.text_input("Password", "", type="password")
+    
     if st.button("Login"):
         if username == "admin" and password == "admin123":
+            # Set session state to logged in and redirect to home page
             st.session_state.logged_in = True
-            st.session_state.page = "Home"  # Redirect ke halaman Home
-            st.experimental_rerun()
+            st.session_state.page = "Home"
         else:
             st.error("Username atau password salah!")
 
