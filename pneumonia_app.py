@@ -3,9 +3,6 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
 
-# Menonaktifkan sidebar Streamlit dan mengatur layout lebar penuh
-st.set_page_config(page_title="Aplikasi Prediksi Pneumonia", layout="wide", initial_sidebar_state="collapsed")
-
 # Tentukan path model yang sudah dilatih
 model_path = 'keras_model_pneumonia.h5'  # Ganti dengan path model yang sesuai
 
