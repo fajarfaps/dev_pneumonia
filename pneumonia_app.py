@@ -44,6 +44,27 @@ def predict(image, model):
     confidence = np.max(prediction) * 100
     return predicted_class, confidence
 
+# Fungsi untuk memberikan deskripsi berdasarkan kelas dan tingkat kepercayaan
+def get_prediction_description(predicted_class, confidence):
+    if predicted_class == 0:  # Misalkan 0 adalah kelas Normal
+        class_name = "Normal"
+        if confidence > 80:
+            description = "Model sangat yakin bahwa gambar ini adalah normal. Tidak ada tanda-tanda pneumonia yang terdeteksi."
+        elif confidence > 50:
+            description = "Model menunjukkan bahwa gambar ini kemungkinan besar normal, tetapi disarankan untuk melakukan pemeriksaan lebih lanjut."
+        else:
+            description = "Model kurang yakin tentang prediksi ini. Disarankan untuk berkonsultasi dengan tenaga medis."
+    else:  # Misalkan 1 adalah kelas Pneumonia
+        class_name = "Pneumonia"
+        if confidence > 80:
+            description = "Model sangat yakin bahwa gambar ini menunjukkan tanda-tanda pneumonia. Segera konsultasikan dengan dokter untuk penanganan lebih lanjut."
+        elif confidence > 50:
+            description = "Model menunjukkan bahwa gambar ini mungkin menunjukkan pneumonia, tetapi disarankan untuk melakukan pemeriksaan lebih lanjut."
+        else:
+            description = "Model kurang yakin tentang prediksi ini. Disarankan untuk berkonsultasi dengan tenaga medis untuk diagnosis yang lebih akurat."
+    
+    return class_name, description
+
 # Halaman login
 def login_page():
     st.title("Login untuk Mengakses Aplikasi")
@@ -180,11 +201,9 @@ Namun, ada 13 kesalahan untuk kategori normal dan 4 kesalahan untuk pneumonia.
 def prediction_page():
     st.title("🔍 Prediksi Pneumonia")
     uploaded_file = st.file_uploader("Unggah gambar X-ray paru-paru", type=["jpg", "jpeg", "png"])
-    st.title("Halaman Prediksi Pneumonia")
     st.markdown("""    
     Unggah gambar X-ray paru-paru Anda untuk mendeteksi kemungkinan pneumonia.
     *Catatan:* Aplikasi ini bukan pengganti diagnosis medis, jangan jadikan hasil prediksi ini menjadi keputusan yang absolute.
- 
     """)
     
     st.markdown("---")
@@ -203,8 +222,10 @@ def prediction_page():
 
         if model is not None:
             predicted_class, confidence = predict(image, model)
-            st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
-            st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
+            class_name, description = get_prediction_description(predicted_class, confidence)
+            st.write(f"Prediksi: **{class_name}**")  # Menghilangkan nomor kelas
+            st.write(f"Tingkat Kepercayaan: **{confidence:.2f}%**")
+            st.write(description)
         else:
             st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
 
