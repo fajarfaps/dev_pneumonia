@@ -31,9 +31,16 @@ IMAGE_WIDTH, IMAGE_HEIGHT = 224, 224
 
 # Fungsi untuk prediksi
 def predict(image, model):
+    # Mengubah gambar menjadi RGB jika tidak
+    if image.mode != 'RGB':
+        image = image.convert('RGB')
+    
     image = image.resize((IMAGE_WIDTH, IMAGE_HEIGHT))
     image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=0)
+    image = np.expand_dims(image, axis=0)  # Menambahkan dimensi batch
+    
+    st.write(f"Image shape: {image.shape}")  # Debugging shape
+    
     prediction = model.predict(image)
     predicted_class = np.argmax(prediction, axis=1)[0]
     confidence = np.max(prediction) * 100
