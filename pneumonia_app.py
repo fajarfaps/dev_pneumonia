@@ -39,8 +39,6 @@ def predict(image, model):
     image = np.array(image) / 255.0
     image = np.expand_dims(image, axis=0)  # Menambahkan dimensi batch
     
-    st.write(f"Image shape: {image.shape}")  # Debugging shape
-    
     prediction = model.predict(image)
     predicted_class = np.argmax(prediction, axis=1)[0]
     confidence = np.max(prediction) * 100
@@ -101,7 +99,7 @@ def prediction_page():
 
         if model is not None:
             predicted_class, confidence = predict(image, model)
-            st.write(f"Prediksi: {class_names[predicted_class].strip()}")
+            st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
             st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
         else:
             st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
