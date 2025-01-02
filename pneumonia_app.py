@@ -177,14 +177,12 @@ Model cukup bagus karena sebagian besar prediksi berada di kotak biru tua (predi
 Namun, ada 13 kesalahan untuk kategori normal dan 4 kesalahan untuk pneumonia.
     """)
 
-import matplotlib.pyplot as plt
-
-# Halaman Prediksi
 def prediction_page():
+    st.title("🔍 Prediksi Pneumonia")
+    uploaded_file = st.file_uploader("Unggah gambar X-ray paru-paru", type=["jpg", "jpeg", "png"])
     st.title("Halaman Prediksi Pneumonia")
     st.markdown("""    
     Unggah gambar X-ray paru-paru Anda untuk mendeteksi kemungkinan pneumonia.
-
     *Catatan:* Aplikasi ini bukan pengganti diagnosis medis, jangan jadikan hasil prediksi ini menjadi keputusan yang absolute.
  
     """)
@@ -203,12 +201,12 @@ def prediction_page():
         image = Image.open(uploaded_file)
         st.image(image, caption="Gambar yang diunggah", use_column_width=True)
 
-    if model is not None:
-        predicted_class, confidence = predict(image, model)
-        st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
-        st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
-    else:
-        st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
+        if model is not None:
+            predicted_class, confidence = predict(image, model)
+            st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
+            st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
+        else:
+            st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
 
 # Halaman Tentang
 def about_page():
