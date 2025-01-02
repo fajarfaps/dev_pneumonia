@@ -171,7 +171,6 @@ def about_page():
     """)
 
 # Sidebar kustom
-d# Sidebar kustom
 def sidebar():
     st.sidebar.title("Navigasi")
     
