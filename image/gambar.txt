@@ -1,0 +1,7 @@
+list gambar :
+    banner_pneumonia.jpg
+    tutor_tb.jpg
+    model_akurasi_pneumonia.jpg
+    acc_perclass.png
+    confus_matrix.png
+    foto_profil.jpg
