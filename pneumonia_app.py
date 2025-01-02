@@ -170,28 +170,33 @@ def about_page():
     - Hasil dari aplikasi ini perlu dikonfirmasi lebih lanjut oleh tenaga medis.
     """)
 
+# Sidebar kustom
+d# Sidebar kustom
+def sidebar():
+    st.sidebar.title("Navigasi")
+    
+    if st.sidebar.button("Home"):
+        st.session_state.page = "Home"
+    if st.sidebar.button("Prediksi"):
+        st.session_state.page = "Prediksi"
+    if st.sidebar.button("About"):
+        st.session_state.page = "About"
+
 # Menentukan tampilan berdasarkan halaman yang dipilih
 def main():
-    # Memastikan sesi pengguna
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
     if 'page' not in st.session_state:
         st.session_state.page = 'Login'
 
-    # Menampilkan Navbar Kustom
     if st.session_state.logged_in:
-        menu = st.radio("Navigasi", ["Home", "Prediksi", "About"])
-        if menu == "Home":
-            st.session_state.page = "Home"
-        elif menu == "Prediksi":
-            st.session_state.page = "Prediction"
-        elif menu == "About":
-            st.session_state.page = "About"
+        # Menampilkan sidebar kustom
+        sidebar()
 
         # Menampilkan halaman sesuai menu
         if st.session_state.page == "Home":
             home_page()
-        elif st.session_state.page == "Prediction":
+        elif st.session_state.page == "Prediksi":
             prediction_page()
         elif st.session_state.page == "About":
             about_page()
