@@ -3,6 +3,7 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
 
+
 # Tentukan path model yang sudah dilatih
 model_path = 'keras_model_pneumonia.h5'  # Ganti dengan path model yang sesuai
 
@@ -201,84 +202,50 @@ def prediction_page():
     
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
-        
-        # Prediksi kelas dan tingkat kepercayaan
-        predicted_class, confidence = predict(image, model)
-        
-        # Menampilkan hasil prediksi
-        st.markdown(f"<p class='black-text'><strong>Prediksi Kelas:</strong> {class_names[predicted_class]}</p>", unsafe_allow_html=True)
-        st.markdown(f"<p class='black-text'><strong>Akurasi:</strong> {confidence:.2f}%</p>", unsafe_allow_html=True)
+        st.image(image, caption="Gambar yang Diupload", use_column_width=True)
 
-# Halaman About
-# Halaman About
+        # Lakukan prediksi
+        model = load_model_from_file()
+        if model:
+            predicted_class, confidence = predict(image, model)
+            st.write(f"Hasil Prediksi: {class_names[predicted_class].strip()}")
+            st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
+
+# Halaman Tentang
 def about_page():
-    st.title("Tentang Pengembang")
-    
-    # Deskripsi Pengembang
+    st.title("Tentang Aplikasi")
     st.write("""
-    **Perkenalkan saya, Fajar Pangestu Amandaru.**  
-    Saya adalah mahasiswa Teknik Informatika di Universitas Indraprasta PGRI.  
-    Aplikasi ini dibuat sebagai bagian dari tugas akhir saya, yang bertujuan untuk 
-    mendeteksi penyakit pneumonia dengan teknologi kecerdasan buatan.
+    Aplikasi ini dikembangkan untuk membantu mendeteksi penyakit pneumonia dari gambar X-ray paru-paru.
+    Sistem ini menggunakan model deep learning yang dilatih dengan dataset X-ray paru-paru untuk membedakan antara gambar normal dan yang menunjukkan tanda-tanda pneumonia.
+    """)
+    
+    st.markdown("---")
+
+    st.subheader("Kriteria Aplikasi")
+    st.write("""
+    - Aplikasi ini hanya berfungsi untuk memberikan informasi sementara mengenai kemungkinan adanya pneumonia.
+    - Hasil dari aplikasi ini perlu dikonfirmasi lebih lanjut oleh tenaga medis.
     """)
 
-    # Kolom untuk media sosial
-    st.subheader("Social Media")
-    col1, col2, col3 = st.columns(3)
+# Menentukan tampilan berdasarkan halaman yang dipilih
+def main():
+    # Memastikan sesi pengguna
+    if 'logged_in' not in st.session_state:
+        st.session_state.logged_in = False
+    if 'page' not in st.session_state:
+        st.session_state.page = 'Login'
 
-    with col1:
-        st.markdown("#### 📷 Instagram")
-        st.markdown("[fjrpangestu](https://www.instagram.com/fjrpangestu)")
+    if st.session_state.logged_in:
+        if st.session_state.page == 'Home':
+            home_page()
+        elif st.session_state.page == 'Prediction':
+            prediction_page()
+        elif st.session_state.page == 'About':
+            about_page()
+        else:
+            st.warning("Halaman tidak dikenal.")
+    else:
+        login_page()
 
-    with col2:
-        st.markdown("#### 🔗 LinkedIn")
-        st.markdown("[Fajar Pangestu Amandaru](https://www.linkedin.com/in/fajarpangestuamandaru/)")
-
-    with col3:
-        st.markdown("#### 📧 Email")
-        st.markdown("[fajar.faps@gmail.com](mailto:fajar.faps@gmail.com)")
-
-    # Tambahkan gambar jika diinginkan (opsional)
-    
-    image = Image.open("image/foto_profil.jpg")
-    st.image('image/foto_profil.jpg', caption='Fajar Pangestu Amandaru', use_column_width=True)
-
-    # Tambahkan gaya visual lainnya
-    st.markdown("---")
-    st.markdown(
-        """
-        <style>
-        h1, h2, h3, h4 {
-            color: #FF4B4B;
-        }
-        .stMarkdown p {
-            line-height: 1.8;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-# Navigasi Sidebar dengan Dropdown
-def sidebar_navigation():
-    st.sidebar.title("Navigasi")
-    options = ["Home", "Prediksi", "About"]
-    st.session_state.page = st.sidebar.selectbox("Pilih Halaman", options)
-
-# Inisialisasi session state
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-if "page" not in st.session_state:
-    st.session_state.page = "Home"
-
-# Logika aplikasi
-if not st.session_state.logged_in:
-    login_page()
-else:
-    sidebar_navigation()
-    if st.session_state.page == "Home":
-        home_page()
-    elif st.session_state.page == "Prediksi":
-        prediction_page()
-    elif st.session_state.page == "About":
-        about_page()
+if __name__ == "__main__":
+    main()
