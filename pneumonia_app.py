@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 
 # Tentukan path model yang sudah dilatih
-model_path = ("C:\\Users\\User\\h5_template\\h5_pneumonia\\keras_model_pneumonia.h5")  # Ganti dengan path model yang sesuai
+model_path = ("keras_model_pneumonia.h5")  # Ganti dengan path model yang sesuai
 model = load_model(model_path)
 
 # Tentukan ukuran gambar dan nama kelas
@@ -63,7 +63,7 @@ def home_page():
     st.markdown("---")
 
     st.subheader("Apa Itu Pneumonia?")
-    image = Image.open('C:\\Users\\User\\baner_pneumonia.jpg')
+    image = Image.open("image/baner_pneumonia.jpg")
     st.image('baner_pneumonia.jpg', caption='',use_column_width=True)
     st.write("""
     Pneumonia adalah infeksi yang mempengaruhi kantong-kantong udara kecil di dalam paru-paru yang disebut alveoli.
@@ -80,7 +80,7 @@ def home_page():
     st.markdown("---")
 
     st.subheader("Cara Kerja Aplikasi")
-    image = Image.open('C:\\Users\\User\\tutor_tb.jpg')
+    image = Image.open("image/tutor_tb.jpg")
     st.image('tutor_tb.jpg', caption='', use_column_width=True)
     st.write("""
     Aplikasi ini menggunakan model Convolutional Neural Network (CNN) yang dilatih khusus untuk membedakan
@@ -113,7 +113,7 @@ def home_page():
     Visualisasi Data disini menunjukan diagram guna memantau presentase ataupun konsistensi dari pelatihan model yang dilakukan.
     """)
     st.write("")
-    image = Image.open('C:\\Users\\User\\model_akurasi_pneumonia.jpg')
+    image = Image.open("image/model_akurasi_pneumonia.jpg")
     st.image('model_akurasi_pneumonia.jpg', caption='Gambar Visualisasi Matrix Pelatihan Model', use_column_width=True)
     st.write("""
              Visualisasi ini menunjukkan kinerja model deep learning berdasarkan dataset pneumonia yang diambil dari Kaggle. Berikut adalah analisisnya:
@@ -132,7 +132,7 @@ def home_page():
 - Epochs        : Pelatihan 40 kali (epoch), dan kelihatan di grafiknya model udah stabil sebelum 40, jadi udah cukup.
              """)
     st.markdown("---")
-    image = Image.open('C:\\Users\\User\\acc_perclass.png')
+    image = Image.open("image/acc_perclass.png")
     st.image('acc_perclass.png', caption='Gambar Visualisasi Pelatihan berdasarkan tiap tiap kelas', use_column_width=True)
     st.write("""
     Tabel Akurasi Per Kelas
@@ -145,7 +145,7 @@ Jumlah Sampel:
 - Untuk tiap kategori, ada 203 gambar yang diuji.
     """)
     st.markdown("---")
-    image = Image.open('C:\\Users\\User\\confus_matrix.png')
+    image = Image.open("image/confus_matrix.png")
     st.image('confus_matrix.png', caption='Gambar Visualisasi Confusion Matrix', use_column_width=True)
     st.write("""
     Confusion Matrix
@@ -230,7 +230,7 @@ def about_page():
 
     # Tambahkan gambar jika diinginkan (opsional)
     
-    image = Image.open('C:\\Users\\User\\foto_profil.jpg')
+    image = Image.open("image/foto_profil.jpg")
     st.image('foto_profil.jpg', caption='Fajar Pangestu Amandaru', use_column_width=True)
 
     # Tambahkan gaya visual lainnya
