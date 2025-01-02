@@ -200,23 +200,15 @@ def prediction_page():
     st.subheader("📤 Unggah Gambar X-ray")
     uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
     if uploaded_file is not None:
-        image = Image.open(uploaded_file)
-        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
+    image = Image.open(uploaded_file)
+    st.image(image, caption="Gambar yang diunggah", use_column_width=True)
 
-        if model is not None:
-            predicted_class, confidence = predict(image, model)
-            st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
-            st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
-
-            # Membuat visualisasi berdasarkan hasil prediksi
-            fig, ax = plt.subplots(figsize=(4, 2))
-            ax.bar(['Normal', 'Pneumonia'], [100-confidence, confidence], color=['blue', 'red'])
-            ax.set_ylabel('Tingkat Kepercayaan (%)')
-            ax.set_title('Visualisasi Hasil Prediksi')
-            st.pyplot(fig)  # Menampilkan visualisasi
-
-        else:
-            st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
+    if model is not None:
+        predicted_class, confidence = predict(image, model)
+        st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
+        st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
+    else:
+        st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
 
 # Halaman Tentang
 def about_page():
