@@ -3,46 +3,21 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
 
-# Tentukan path model yang sudah dilatih
-model_path = 'keras_model_pneumonia.h5'  # Ganti dengan path model yang sesuai
-
-# Fungsi untuk memuat model
-def load_model_from_file():
-    try:
-        model = load_model(model_path)
-        st.success('Model berhasil dimuat!')
-        return model
-    except Exception as e:
-        st.error(f"Terjadi kesalahan saat memuat model: {e}")
-        return None
+model_path = 'keras_model.h5'  # Ganti dengan path model yang sesuai
+model = load_model(model_path)
 
 # Tentukan ukuran gambar dan nama kelas
 IMAGE_WIDTH, IMAGE_HEIGHT = 224, 224
-class_names = open("labels_pneumonia.txt", "r").readlines()
-
+class_names = open("labels.txt", "r").readlines()
 # Fungsi untuk memprediksi gambar
 def predict(image, model):
-    # Resize gambar ke ukuran yang diharapkan oleh model
     image = image.resize((IMAGE_WIDTH, IMAGE_HEIGHT))
-    
-    # Konversi gambar ke array numpy dan normalisasi ke [0, 1]
     image = np.array(image) / 255.0
-    
-    # Jika gambar hanya grayscale (1 channel), duplikasi menjadi 3 saluran (RGB)
-    if len(image.shape) == 2:  # Jika gambar 2D (grayscale)
-        image = np.stack([image] * 3, axis=-1)  # Membuat 3 saluran (RGB) dari grayscale
-    
-    # Menambah dimensi untuk batch_size
-    image = np.expand_dims(image, axis=0)  # Menambah dimensi untuk batch
-    
-    # Lakukan prediksi
+    image = np.expand_dims(image, axis=0)
     prediction = model.predict(image)
-    
-    # Tentukan kelas prediksi dan tingkat kepercayaan
     predicted_class = np.argmax(prediction, axis=1)[0]
     confidence = np.max(prediction) * 100
     return predicted_class, confidence
-
 # Halaman login
 def login_page():
     st.title("Login untuk Mengakses Aplikasi")
