@@ -154,6 +154,7 @@ def prediction_page():
             st.write(f"Hasil Prediksi: {class_names[predicted_class].strip()}")
             st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
 
+
 # Halaman Tentang
 def about_page():
     st.title("Tentang Aplikasi")
