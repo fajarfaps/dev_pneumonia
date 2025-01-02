@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 
 # Tentukan path model yang sudah dilatih
-model_path = ("keras_model_pneumonia.h5")  # Ganti dengan path model yang sesuai
+model_path = "keras_model_pneumonia.h5"  # Ganti dengan path model yang sesuai
 model = load_model(model_path)
 
 # Tentukan ukuran gambar dan nama kelas
