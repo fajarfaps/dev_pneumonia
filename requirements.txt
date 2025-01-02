@@ -1,5 +1,5 @@
 streamlit==1.37.0
-opencv-python
-numpy<2
-tensorflow==2.7.0  # or the appropriate version
-Pillow
+opencv-python-headless==4.6.0.66  # versi headless untuk menghindari masalah dependensi grafis
+numpy==1.21.6  # gunakan versi yang lebih stabil dengan TensorFlow
+tensorflow==2.7.0  # TensorFlow versi yang lebih stabil dengan model Teachable Machine
+Pillow==8.4.0  # versi stabil Pillow
