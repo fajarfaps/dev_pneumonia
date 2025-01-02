@@ -177,6 +177,8 @@ Model cukup bagus karena sebagian besar prediksi berada di kotak biru tua (predi
 Namun, ada 13 kesalahan untuk kategori normal dan 4 kesalahan untuk pneumonia.
     """)
 
+import matplotlib.pyplot as plt
+
 # Halaman Prediksi
 def prediction_page():
     st.title("Halaman Prediksi Pneumonia")
@@ -205,6 +207,14 @@ def prediction_page():
             predicted_class, confidence = predict(image, model)
             st.write(f"Prediksi: {class_names[predicted_class].strip()}")  # Menghilangkan nomor kelas
             st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
+
+            # Membuat visualisasi berdasarkan hasil prediksi
+            fig, ax = plt.subplots()
+            ax.bar(['Normal', 'Pneumonia'], [100-confidence, confidence], color=['blue', 'red'])
+            ax.set_ylabel('Tingkat Kepercayaan (%)')
+            ax.set_title('Visualisasi Hasil Prediksi')
+            st.pyplot(fig)  # Menampilkan visualisasi
+
         else:
             st.error("Model tidak tersedia. Pastikan model dimuat dengan benar.")
 
