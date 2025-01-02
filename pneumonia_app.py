@@ -200,12 +200,6 @@ Namun, ada 13 kesalahan untuk kategori normal dan 4 kesalahan untuk pneumonia.
 
 def prediction_page():
     st.title("🔍 Prediksi Pneumonia")
-    uploaded_file = st.file_uploader("Unggah gambar X-ray paru-paru", type=["jpg", "jpeg", "png"])
-    st.markdown("""    
-    Unggah gambar X-ray paru-paru Anda untuk mendeteksi kemungkinan pneumonia.
-    *Catatan:* Aplikasi ini bukan pengganti diagnosis medis, jangan jadikan hasil prediksi ini menjadi keputusan yang absolute.
-    """)
-    
     st.markdown("---")
     st.subheader("📋 Langkah-langkah:")
     st.write("""
