@@ -71,7 +71,7 @@ Aplikasi ini terdiri dari beberapa fitur utama seperti login, prediksi, informas
 |
 |-- keras_model_pneumonia.h5  # File model CNN yang telah dilatih
 |-- labels_pneumonia.txt      # File label untuk kelas prediksi
-|-- main.py                  # Kode utama aplikasi
+|-- pneumonia_app.py          # Kode utama aplikasi
 ```
 
 ---
