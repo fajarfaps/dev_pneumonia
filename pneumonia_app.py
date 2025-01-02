@@ -200,8 +200,8 @@ def prediction_page():
     st.subheader("📤 Unggah Gambar X-ray")
     uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
     if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Gambar yang diunggah", use_column_width=True)
+        image = Image.open(uploaded_file)
+        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
 
     if model is not None:
         predicted_class, confidence = predict(image, model)
