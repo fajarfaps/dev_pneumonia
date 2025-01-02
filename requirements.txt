@@ -1,5 +1,5 @@
 streamlit==1.37.0
 opencv-python
 numpy<2
-tensorflow-cpu==2.18.0  # or the appropriate version
+tensorflow==2.7.0  # or the appropriate version
 Pillow
