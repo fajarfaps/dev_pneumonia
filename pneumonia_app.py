@@ -87,13 +87,13 @@ def home_page():
     orang tua, dan individu dengan sistem kekebalan tubuh yang lemah. Dengan deteksi dini melalui aplikasi ini, 
     diharapkan dapat membantu pengguna untuk segera mencari penanganan medis yang diperlukan.
     """)
-
+    
     st.markdown("---")
 
     st.subheader("Cara Kerja Aplikasi")
     image = Image.open("image/tutor_tb.jpg")
     st.image('image/tutor_tb.jpg', caption='', use_column_width=True)
-    st.write("""
+    st.write("""    
     Aplikasi ini menggunakan model Convolutional Neural Network (CNN) yang dilatih khusus untuk membedakan
     antara gambar X-ray yang menunjukkan adanya pneumonia atau tidak. Berikut adalah cara kerja aplikasi ini:
 
@@ -106,7 +106,7 @@ def home_page():
     st.markdown("---")
 
     st.subheader("Penjelasan Tentang Akurasi")
-    st.write("""
+    st.write("""    
     Akurasi adalah ukuran seberapa benar atau sesuai hasil prediksi model dengan kondisi sebenarnya. 
     Dalam konteks aplikasi ini, akurasi membantu kita memahami seberapa yakin model dalam memprediksi 
     apakah gambar X-ray menunjukkan tanda-tanda pneumonia. Tingkat akurasi yang tinggi mengindikasikan 
@@ -116,7 +116,7 @@ def home_page():
     st.markdown("---")
     
     st.subheader("Visualisasi Data")
-    st.write("""
+    st.write("""    
     Visualisasi Data disini menunjukan diagram guna memantau presentase ataupun konsistensi dari pelatihan model yang dilakukan.
     """)
     st.write("")
@@ -153,7 +153,6 @@ def prediction_page():
             predicted_class, confidence = predict(image, model)
             st.write(f"Hasil Prediksi: {class_names[predicted_class].strip()}")
             st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
-
 
 # Halaman Tentang
 def about_page():
