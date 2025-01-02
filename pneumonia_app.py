@@ -209,7 +209,7 @@ def prediction_page():
             st.write(f"Tingkat Kepercayaan: {confidence:.2f}%")
 
             # Membuat visualisasi berdasarkan hasil prediksi
-            fig, ax = plt.subplots(figsize=(5, 3))
+            fig, ax = plt.subplots(figsize=(4, 2))
             ax.bar(['Normal', 'Pneumonia'], [100-confidence, confidence], color=['blue', 'red'])
             ax.set_ylabel('Tingkat Kepercayaan (%)')
             ax.set_title('Visualisasi Hasil Prediksi')
