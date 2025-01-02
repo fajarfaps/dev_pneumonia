@@ -1,5 +1,4 @@
 import streamlit as st
-import tensorflow as tf
 from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
@@ -11,7 +10,6 @@ model = load_model(model_path)
 # Tentukan ukuran gambar dan nama kelas
 IMAGE_WIDTH, IMAGE_HEIGHT = 224, 224
 class_names = open("labels_pneumonia.txt", "r").readlines()
-
 # Fungsi untuk memprediksi gambar
 def predict(image, model):
     # Resize gambar ke ukuran yang diharapkan oleh model
