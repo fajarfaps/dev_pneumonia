@@ -74,7 +74,8 @@ def home_page():
 
     st.subheader("Apa Itu Pneumonia?")
     image = Image.open("image/baner_pneumonia.jpg")
-    st.image('baner_pneumonia.jpg', caption='',use_column_width=True)
+    st.image('image/baner_pneumonia.jpg', caption='', use_column_width=True)
+
     st.write("""
     Pneumonia adalah infeksi yang mempengaruhi kantong-kantong udara kecil di dalam paru-paru yang disebut alveoli.
     Pada kondisi ini, kantong-kantong udara tersebut dapat terisi oleh cairan atau nanah, sehingga menyebabkan
@@ -91,7 +92,7 @@ def home_page():
 
     st.subheader("Cara Kerja Aplikasi")
     image = Image.open("image/tutor_tb.jpg")
-    st.image('tutor_tb.jpg', caption='', use_column_width=True)
+    st.image('image/tutor_tb.jpg', caption='', use_column_width=True)
     st.write("""
     Aplikasi ini menggunakan model Convolutional Neural Network (CNN) yang dilatih khusus untuk membedakan
     antara gambar X-ray yang menunjukkan adanya pneumonia atau tidak. Berikut adalah cara kerja aplikasi ini:
@@ -124,7 +125,7 @@ def home_page():
     """)
     st.write("")
     image = Image.open("image/model_akurasi_pneumonia.jpg")
-    st.image('model_akurasi_pneumonia.jpg', caption='Gambar Visualisasi Matrix Pelatihan Model', use_column_width=True)
+    st.image('image/model_akurasi_pneumonia.jpg', caption='Gambar Visualisasi Matrix Pelatihan Model', use_column_width=True)
     st.write("""
              Visualisasi ini menunjukkan kinerja model deep learning berdasarkan dataset pneumonia yang diambil dari Kaggle. Berikut adalah analisisnya:
 
@@ -143,7 +144,7 @@ def home_page():
              """)
     st.markdown("---")
     image = Image.open("image/acc_perclass.png")
-    st.image('acc_perclass.png', caption='Gambar Visualisasi Pelatihan berdasarkan tiap tiap kelas', use_column_width=True)
+    st.image('image/acc_perclass.png', caption='Gambar Visualisasi Pelatihan berdasarkan tiap tiap kelas', use_column_width=True)
     st.write("""
     Tabel Akurasi Per Kelas
 Apa isi tabel ini?
@@ -156,7 +157,7 @@ Jumlah Sampel:
     """)
     st.markdown("---")
     image = Image.open("image/confus_matrix.png")
-    st.image('confus_matrix.png', caption='Gambar Visualisasi Confusion Matrix', use_column_width=True)
+    st.image('image/confus_matrix.png', caption='Gambar Visualisasi Confusion Matrix', use_column_width=True)
     st.write("""
     Confusion Matrix
 1. Apa itu confusion matrix?
@@ -241,7 +242,7 @@ def about_page():
     # Tambahkan gambar jika diinginkan (opsional)
     
     image = Image.open("image/foto_profil.jpg")
-    st.image('foto_profil.jpg', caption='Fajar Pangestu Amandaru', use_column_width=True)
+    st.image('image/foto_profil.jpg', caption='Fajar Pangestu Amandaru', use_column_width=True)
 
     # Tambahkan gaya visual lainnya
     st.markdown("---")
