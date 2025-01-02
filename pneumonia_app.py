@@ -65,7 +65,7 @@ def home_page():
     st.title("SISTEM PAKAR PENDETEKSI PENYAKIT PNEUMONIA MENGGUNAKAN ALGORITMA CNN")
     st.subheader("Selamat Datang di Aplikasi Prediksi Pneumonia Berbasis AI 🩺")
 
-    st.write("""
+    st.write("""    
     *Aplikasi Prediksi Pneumonia* adalah alat bantu berbasis kecerdasan buatan yang dirancang untuk mendeteksi
     adanya penyakit pneumonia dari gambar X-ray paru-paru. Pneumonia adalah infeksi serius yang mengakibatkan
     peradangan pada kantong udara di paru-paru dan dapat berpotensi fatal jika tidak ditangani dengan benar.
@@ -79,7 +79,7 @@ def home_page():
     image = Image.open("image/baner_pneumonia.jpg")
     st.image('image/baner_pneumonia.jpg', caption='', use_column_width=True)
 
-    st.write("""
+    st.write("""    
     Pneumonia adalah infeksi yang mempengaruhi kantong-kantong udara kecil di dalam paru-paru yang disebut alveoli.
     Pada kondisi ini, kantong-kantong udara tersebut dapat terisi oleh cairan atau nanah, sehingga menyebabkan
     batuk dengan lendir, demam, menggigil, dan kesulitan bernapas. Penyakit ini dapat disebabkan oleh berbagai jenis
@@ -114,12 +114,8 @@ def home_page():
     Dalam konteks aplikasi ini, akurasi membantu kita memahami seberapa yakin model dalam memprediksi 
     apakah gambar X-ray menunjukkan tanda-tanda pneumonia. Tingkat akurasi yang tinggi mengindikasikan 
     prediksi yang lebih dapat diandalkan.
-
-    *Contoh Penafsiran Akurasi*:
-    - Jika akurasi mendekati 100%, berarti model sangat yakin dengan hasil prediksinya.
-    - Jika akurasi lebih rendah, hasil prediksi tetap bermanfaat namun disarankan untuk melakukan 
-      pemeriksaan lanjutan atau konsultasi medis untuk memastikan diagnosis.
     """)
+
     st.markdown("---")
     
     st.subheader("Visualisasi Data")
@@ -129,57 +125,6 @@ def home_page():
     st.write("")
     image = Image.open("image/model_akurasi_pneumonia.jpg")
     st.image('image/model_akurasi_pneumonia.jpg', caption='Gambar Visualisasi Matrix Pelatihan Model', use_column_width=True)
-    st.write("""
-             Visualisasi ini menunjukkan kinerja model deep learning berdasarkan dataset pneumonia yang diambil dari Kaggle. Berikut adalah analisisnya:
-
-1. *Model Accuracy (Grafik Kiri)*
-- Grafik ini nunjukin gimana akurasi model selama pelatihan dan validasi.
-- Awalnya, akurasi pelan-pelan naik, terus sekitar epoch ke-15 mulai stabil, dan di akhir akurasi pelatihan sama validasinya udah di atas 90%.
-- Ini berarti model lumayan mantap, udah bisa ngeklasifikasi pneumonia dengan akurasi tinggi.
-2. *Model Loss (Grafik Kanan)*
-- Nah, grafik loss ini kebalikannya dari akurasi. Semakin kecil angkanya, semakin bagus.
-- Di awal-awal pelatihan (epoch 0-10), loss turun tajam banget, terus makin lama makin stabil sampai akhir pelatihan.
-- Menariknya, loss validasi malah sering lebih rendah dibanding loss pelatihan, jadi model tersebut nggak cuma jago di data latih, tapi juga keren di data yang belum pernah dilihat (validasi).
-3. *Parameter yang Digunakan*
-- Image Size    : Image Size yang dipakai ukuran 150x150 piksel. Ini udah cukup buat gambar X-ray biar fitur pentingnya keambil.
-- Batch Size    : Jumlah Batch-nya 16, jadi setiap pelatihan ngolah 16 gambar sekaligus. Ini bikin model lebih fokus ke detail gambar tapi agak makan waktu.
-- Epochs        : Pelatihan 40 kali (epoch), dan kelihatan di grafiknya model udah stabil sebelum 40, jadi udah cukup.
-             """)
-    st.markdown("---")
-    image = Image.open("image/acc_perclass.png")
-    st.image('image/acc_perclass.png', caption='Gambar Visualisasi Pelatihan berdasarkan tiap tiap kelas', use_column_width=True)
-    st.write("""
-    Tabel Akurasi Per Kelas
-Apa isi tabel ini?
-Tabel ini menunjukkan seberapa akurat model mengenali dua kategori, yaitu normal dan pneumonia:
-
-- Normal: Akurasi model mencapai 94% (artinya dari semua gambar yang "normal," 94% diklasifikasi dengan benar).
-- Pneumonia: Akurasi model lebih tinggi lagi, yaitu 98%.
-Jumlah Sampel:
-- Untuk tiap kategori, ada 203 gambar yang diuji.
-    """)
-    st.markdown("---")
-    image = Image.open("image/confus_matrix.png")
-    st.image('image/confus_matrix.png', caption='Gambar Visualisasi Confusion Matrix', use_column_width=True)
-    st.write("""
-    Confusion Matrix
-1. Apa itu confusion matrix?
-Ini adalah cara visual untuk melihat seberapa banyak prediksi model benar atau salah.
-
-2. Penjelasan Matriks:
-
-- Kotak biru tua: Prediksi benar (sesuai dengan label aslinya).
-- Kotak biru muda: Prediksi salah.
-Mari kita lihat angkanya:
-
-- 190 (kiri atas): Gambar yang sebenarnya normal dan diprediksi normal.
-- 13 (kanan atas): Gambar normal, tapi diprediksi salah sebagai pneumonia.
-- 4 (kiri bawah): Gambar pneumonia, tapi diprediksi salah sebagai normal.
-- 199 (kanan bawah): Gambar yang sebenarnya pneumonia dan diprediksi pneumonia. Apa arti hasil ini?
-
-Model cukup bagus karena sebagian besar prediksi berada di kotak biru tua (prediksi benar).
-Namun, ada 13 kesalahan untuk kategori normal dan 4 kesalahan untuk pneumonia.
-    """)
 
 # Halaman Prediksi
 def prediction_page():
@@ -188,12 +133,11 @@ def prediction_page():
     Unggah gambar X-ray paru-paru Anda untuk mendeteksi kemungkinan pneumonia.
 
     *Catatan:* Aplikasi ini bukan pengganti diagnosis medis, jangan jadikan hasil prediksi ini menjadi keputusan yang absolute.
- 
     """)
     
     st.markdown("---")
     st.subheader("📋 Langkah-langkah:")
-    st.write("""
+    st.write("""    
     1. Klik tombol *'Browse Files'* di bawah ini untuk mengunggah gambar X-ray paru-paru Anda.
     2. Tunggu beberapa saat hingga aplikasi selesai memproses.
     3. Lihat hasil prediksi di bawah beserta tingkat kepercayaan model.
@@ -224,7 +168,7 @@ def about_page():
     st.markdown("---")
 
     st.subheader("Kriteria Aplikasi")
-    st.write("""
+    st.write("""    
     - Aplikasi ini hanya berfungsi untuk memberikan informasi sementara mengenai kemungkinan adanya pneumonia.
     - Hasil dari aplikasi ini perlu dikonfirmasi lebih lanjut oleh tenaga medis.
     """)
@@ -237,12 +181,22 @@ def main():
     if 'page' not in st.session_state:
         st.session_state.page = 'Login'
 
+    # Menampilkan Navbar Kustom
     if st.session_state.logged_in:
-        if st.session_state.page == 'Home':
+        menu = st.radio("Navigasi", ["Home", "Prediksi", "About"])
+        if menu == "Home":
+            st.session_state.page = "Home"
+        elif menu == "Prediksi":
+            st.session_state.page = "Prediction"
+        elif menu == "About":
+            st.session_state.page = "About"
+
+        # Menampilkan halaman sesuai menu
+        if st.session_state.page == "Home":
             home_page()
-        elif st.session_state.page == 'Prediction':
+        elif st.session_state.page == "Prediction":
             prediction_page()
-        elif st.session_state.page == 'About':
+        elif st.session_state.page == "About":
             about_page()
         else:
             st.warning("Halaman tidak dikenal.")
