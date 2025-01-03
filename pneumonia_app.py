@@ -286,7 +286,7 @@ def sidebar():
 # Menentukan tampilan berdasarkan halaman yang dipilih
 def main():
     # Set page config
-    st.set_page_config(page_title="PNEUMONIAIN", layout="wide")
+    st.set_page_config(page_title="PNEUMONIAIN")
 
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
