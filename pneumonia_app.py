@@ -49,19 +49,19 @@ def get_prediction_description(predicted_class, confidence):
     if predicted_class == 0:  # Misalkan 0 adalah kelas Normal
         class_name = "Normal"
         if confidence > 80:
-            description = "Model sangat yakin bahwa gambar ini adalah normal. Tidak ada tanda-tanda pneumonia yang terdeteksi."
+            description = "Terdeteksi bahwa akurasi atau tingkat kepercayaan melebihi 80 persen itu berarti model sangat yakin bahwa gambar ini adalah normal. Tidak ada tanda-tanda pneumonia yang terdeteksi."
         elif confidence > 50:
             description = "Model menunjukkan bahwa gambar ini kemungkinan besar normal, tetapi disarankan untuk melakukan pemeriksaan lebih lanjut."
         else:
-            description = "Model kurang yakin tentang prediksi ini. Disarankan untuk berkonsultasi dengan tenaga medis."
+            description = "Terdeteksi bahwa akurasi atau tingkat kepercayaan kurang dari 50 persen itu berarti model kurang yakin tentang prediksi ini. Disarankan untuk berkonsultasi dengan tenaga medis."
     else:  # Misalkan 1 adalah kelas Pneumonia
         class_name = "Pneumonia"
         if confidence > 80:
-            description = "Model sangat yakin bahwa gambar ini menunjukkan tanda-tanda pneumonia. Segera konsultasikan dengan dokter untuk penanganan lebih lanjut."
+            description = "Terdeteksi bahwa akurasi atau tingkat kepercayaan melebihi 80 persen itu berarti model sangat yakin bahwa gambar ini menunjukkan tanda-tanda pneumonia. Segera konsultasikan dengan dokter untuk penanganan lebih lanjut."
         elif confidence > 50:
             description = "Model menunjukkan bahwa gambar ini mungkin menunjukkan pneumonia, tetapi disarankan untuk melakukan pemeriksaan lebih lanjut."
         else:
-            description = "Model kurang yakin tentang prediksi ini. Disarankan untuk berkonsultasi dengan tenaga medis untuk diagnosis yang lebih akurat."
+            description = "Terdeteksi bahwa akurasi atau tingkat kepercayaan kurang dari 80 persen itu berarti model kurang yakin tentang prediksi ini. Disarankan untuk berkonsultasi dengan tenaga medis untuk diagnosis yang lebih akurat."
     
     return class_name, description
 
