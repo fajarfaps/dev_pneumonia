@@ -285,6 +285,9 @@ def sidebar():
 
 # Menentukan tampilan berdasarkan halaman yang dipilih
 def main():
+    # Set page config
+    st.set_page_config(page_title="PNEUMONIAIN", layout="wide")
+
     if 'logged_in' not in st.session_state:
         st.session_state.logged_in = False
     if 'page' not in st.session_state:
@@ -294,14 +297,18 @@ def main():
         sidebar()
 
         if st.session_state.page == "Home":
+            st.title("PNEUMONIAIN | Home")  # Judul untuk halaman Home
             home_page()
         elif st.session_state.page == "Prediksi":
+            st.title("PNEUMONIAIN | Prediksi")  # Judul untuk halaman Prediksi
             prediction_page()
         elif st.session_state.page == "About":
+            st.title("PNEUMONIAIN | About")  # Judul untuk halaman About
             about_page()
         else:
             st.warning("Halaman tidak dikenal.")
     else:
+        st.title("PNEUMONIAIN | Login")  # Judul untuk halaman Login
         login_page()
 
 if __name__ == "__main__":
