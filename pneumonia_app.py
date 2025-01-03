@@ -297,13 +297,10 @@ def main():
         sidebar()
 
         if st.session_state.page == "Home":
-            st.title("PNEUMONIAIN | Home")  # Judul untuk halaman Home
             home_page()
         elif st.session_state.page == "Prediksi":
-            st.title("PNEUMONIAIN | Prediksi")  # Judul untuk halaman Prediksi
             prediction_page()
         elif st.session_state.page == "About":
-            st.title("PNEUMONIAIN | About")  # Judul untuk halaman About
             about_page()
         else:
             st.warning("Halaman tidak dikenal.")
